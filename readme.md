@@ -130,71 +130,92 @@ Server runs at `http://127.0.0.1:8000/`
 
 You can use [Postman](https://www.postman.com/) or `curl` for testing.
 
+**In Postman:**  
+- Select **Body** → **raw** → **JSON** for requests.
+- Example JSON for each endpoint:
+
 ### Register User
 
-```sh
-curl -X POST http://127.0.0.1:8000/register-user/ \
-  -d "name=John Doe" -d "email=john@example.com" -d "password=secret"
+```json
+POST http://127.0.0.1:8000/register-user/
+Body (raw, JSON):
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "secret"
+}
 ```
 
 ### Authorize User (Login)
 
-```sh
-curl -X POST http://127.0.0.1:8000/authorize-user/ \
-  -d "email=john@example.com" -d "password=secret"
+```json
+POST http://127.0.0.1:8000/authorize-user/
+Body (raw, JSON):
+{
+  "email": "john@example.com",
+  "password": "secret"
+}
 ```
 
 ### Register Book
 
-```sh
-curl -X POST http://127.0.0.1:8000/register-book/ \
-  -d "title=The Hobbit" -d "author=J.R.R. Tolkien"
+```json
+POST http://127.0.0.1:8000/register-book/
+Body (raw, JSON):
+{
+  "title": "The Hobbit",
+  "author": "J.R.R. Tolkien"
+}
 ```
 
 ### Book Disbursement (Rent)
 
-```sh
-curl -X POST http://127.0.0.1:8000/book-disbursement/ \
-  -d "user_name=John Doe" -d "user_email=john@example.com" -d "book_title=The Hobbit"
+```json
+POST http://127.0.0.1:8000/book-disbursement/
+Body (raw, JSON):
+{
+  "user_name": "John Doe",
+  "user_email": "john@example.com",
+  "book_title": "The Hobbit"
+}
 ```
 
 ### Return Book
 
-```sh
-curl -X POST http://127.0.0.1:8000/return-book/ \
-  -d "user_name=John Doe" -d "user_email=john@example.com" -d "book_title=The Hobbit"
+```json
+POST http://127.0.0.1:8000/return-book/
+Body (raw, JSON):
+{
+  "user_name": "John Doe",
+  "user_email": "john@example.com",
+  "book_title": "The Hobbit"
+}
 ```
 
 ### Delete User
 
-```sh
-curl -X POST http://127.0.0.1:8000/delete-user/ \
-  -d "user_name=John Doe" -d "user_email=john@example.com" -d "password=secret"
+```json
+POST http://127.0.0.1:8000/delete-user/
+Body (raw, JSON):
+{
+  "user_name": "John Doe",
+  "user_email": "john@example.com",
+  "password": "secret"
+}
 ```
 
 ### Delete Book
 
-```sh
-curl -X POST http://127.0.0.1:8000/delete-book/ \
-  -d "book_title=The Hobbit"
+```json
+POST http://127.0.0.1:8000/delete-book/
+Body (raw, JSON):
+{
+  "book_title": "The Hobbit"
+}
 ```
 
----
-
-## Troubleshooting
-
-- **Database connection error:** Check `.env` and MySQL server.
-- **Table not found:** Ensure you ran the SQL schema.
-- **Port issues:** Change port in `runserver` command if needed.
-- **CSRF errors:** APIs use `@csrf_exempt` for simplicity.
-
----
-
-## License
-
-MIT
-
----
+**Note:**  
+If you use `curl`, use `-H "Content-Type: application/json"` and `-d '{...}'` for JSON
 
 ## Author
 
